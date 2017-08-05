@@ -12,7 +12,7 @@ function RomanNumerals(num) {
 
   return conversion
 }
-
+// Another approach
 function RomanNumeral(number) {
   const numerals = {
     1: 'I',

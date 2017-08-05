@@ -1,5 +1,5 @@
 describe("RomanNumerals", function () {
-  var numerals = {
+  const numerals = {
     1: 'I',
     2: 'II',
     4: 'IV',
@@ -23,8 +23,9 @@ describe("RomanNumerals", function () {
   })
 })
 
+// Another approach
 describe("RomanNumeral", function () {
-  var numerals = {
+  const numerals = {
     1: 'I',
     2: 'II',
     4: 'IV',
