@@ -18,4 +18,12 @@ describe Changer do
   it 'returns 1 nickel for 5' do
     expect(changer.change(5)).to eq([5])
   end
+
+  it 'returns 1 dime for 10' do
+    expect(changer.change(10)).to eq([10])
+  end
+
+  it 'returns 2 dimes for 20' do
+    expect(changer.change(20)).to eq([10, 10])
+  end
 end
