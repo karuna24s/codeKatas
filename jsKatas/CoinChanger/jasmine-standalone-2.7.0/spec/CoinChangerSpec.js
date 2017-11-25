@@ -20,7 +20,7 @@ describe('CoinChanger', function () {
   it ('returns 1 quarter for 25', function () {
     expect(CoinChanger(25)).toEqual([25])
   })
-  it ('returns 3 quarters, 1 dime, 5, 1 nickel, 4 pennies for 25', function () {
+  it ('returns 3 quarters, 1 dime, 5, 1 nickel, 4 pennies for 94', function () {
     expect(CoinChanger(94)).toEqual([25, 25, 25, 10, 5, 1, 1, 1, 1])
   })
 })
