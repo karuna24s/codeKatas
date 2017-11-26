@@ -1,6 +1,6 @@
 function BowlingGame() {
   this.rolls = [];
-};
+}
 
 BowlingGame.prototype.roll = function (pins) {
   this.rolls.push(pins);
@@ -13,13 +13,13 @@ BowlingGame.prototype.score = function ()  {
 
   for (var frameIndex = 0; frameIndex < 10; frameIndex++) {
     if (isStrike()) {
-        result += getStrikeScore();
+        result += game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2];
         rollIndex++;
     } else if (isSpare()) {
-        result += getSpareScore();
+        result += game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2];
         rollIndex += 2;
     } else {
-        result += getNormalScore();
+        result += game.rolls[rollIndex] + game.rolls[rollIndex + 1];
         rollIndex += 2;
     }
   }
@@ -33,15 +33,4 @@ BowlingGame.prototype.score = function ()  {
     return game.rolls[rollIndex] + game.rolls[rollIndex + 1] == 10
   }
 
-  function getStrikeScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2]
-  }
-
-  function getSpareScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2]
-  }
-
-  function getNormalScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1];
-  }
 };
