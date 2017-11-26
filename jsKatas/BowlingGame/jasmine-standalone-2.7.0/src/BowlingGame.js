@@ -1,47 +1,42 @@
-function BowlingGame() {
-  this.rolls = [];
-};
+const BowlingGame = {
+    make: function() {
+        return Object.create(this.prototype, {
+            _rolls: {
+                writable: true,
+                value: []
+            }
+        });
+    },
 
-BowlingGame.prototype.roll = function (pins) {
-  this.rolls.push(pins);
-};
+    prototype: {
+        roll: function(rolls) {
+            this._rolls = rolls;
+        },
 
-BowlingGame.prototype.score = function ()  {
-  var result = 0;
-  var rollIndex = 0;
-  var game = this;
+        score: function() {
+            let score = 0;
+            let i = 0;
+            for (var frame = 0; frame < 10; frame++) {
+                if (this._isStrike(i)) {
+                    score += 10 + this._rolls[i + 1] + this._rolls[i + 2];
+                    i++;
+                } else if (this._isSpare(i)) {
+                    score += 10 + this._rolls[i + 2];
+                    i += 2;
+                } else {
+                    score += this._rolls[i] + this._rolls[i + 1];
+                    i += 2;
+                }
+            }
+            return score;
+        },
 
-  for (var frameIndex = 0; frameIndex < 10; frameIndex++) {
-    if (isStrike()) {
-        result += getStrikeScore();
-        rollIndex++;
-    } else if (isSpare()) {
-        result += getSpareScore();
-        rollIndex += 2;
-    } else {
-        result += getNormalScore();
-        rollIndex += 2;
+        _isStrike: function(i) {
+            return this._rolls[i] == 10;
+        },
+
+        _isSpare: function(i) {
+            return this._rolls[i] + this._rolls[i + 1] == 10;
+        }
     }
-  }
-  return result;
-
-  function isStrike() {
-    return game.rolls[rollIndex] == 10;
-  }
-
-  function isSpare() {
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1] == 10
-  }
-
-  function getStrikeScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2]
-  }
-
-  function getSpareScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1] + game.rolls[rollIndex + 2]
-  }
-
-  function getNormalScore(){
-    return game.rolls[rollIndex] + game.rolls[rollIndex + 1];
-  }
-};
+}
